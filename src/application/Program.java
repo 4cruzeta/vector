@@ -3,6 +3,8 @@ package application;
 import java.util.Locale;
 import java.util.Scanner;
 
+import entities.Product;
+
 public class Program {
 	
 	public static void main(String[] args) {
@@ -10,19 +12,22 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		int n = sc.nextInt();			// Define a quantidade de elementos
-		double[] vect = new double[n];  // *** O [] define o vetor.
+		int n = sc.nextInt();
+		Product[] vect = new Product[n];		// agora o vetor é da classe produtos
 		
-		for (int i = 0; i < n; i++) {
-			vect[i] = sc.nextDouble();
+		for (int i=0; i<vect.length; i++) {
+			sc.nextLine();
+			String name = sc.nextLine();
+			double price = sc.nextDouble();
+			vect[i] = new Product(name, price);
 		}
 		
 		double sum = 0.0;
-		for (int i = 0; i < n; i++) {
-			sum += vect[i];
+			for (int i=0; i<vect.length; i++) {
+				sum += vect[i].getPrice();
 		}
-		
-		double avg = sum / n;
+			
+		double avg = sum / vect.length;
 		
 		System.out.printf("AVERAGE HEIGHT: %.2f%n", avg);
 		
